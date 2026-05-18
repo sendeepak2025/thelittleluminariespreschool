@@ -810,24 +810,50 @@ h3 {
 }
 
 .gallery-grid {
-  columns: 3 280px;
-  column-gap: 20px;
+  display: flex;
+  gap: 18px;
   margin-top: 34px;
+  padding: 4px 0 18px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-color: rgba(255, 107, 69, 0.8) rgba(234, 223, 206, 0.65);
+  scrollbar-width: thin;
 }
 
 .gallery-grid img {
-  width: 100%;
-  height: auto;
-  break-inside: avoid;
-  margin: 0 0 20px;
+  flex: 0 0 min(78vw, 860px);
+  width: min(78vw, 860px);
+  height: clamp(360px, 48vw, 560px);
+  margin: 0;
   border-radius: 26px;
   object-fit: cover;
+  object-position: center;
   background:
     linear-gradient(135deg, rgba(255, 244, 199, 0.45), rgba(238, 249, 244, 0.55)),
     #fff;
   box-shadow: var(--shadow-soft);
   cursor: zoom-in;
+  scroll-snap-align: center;
   transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.gallery-grid img:nth-child(2n) {
+  flex-basis: min(62vw, 620px);
+  width: min(62vw, 620px);
+}
+
+.gallery-grid::-webkit-scrollbar {
+  height: 10px;
+}
+
+.gallery-grid::-webkit-scrollbar-track {
+  border-radius: 999px;
+  background: rgba(234, 223, 206, 0.65);
+}
+
+.gallery-grid::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--coral), var(--yellow));
 }
 
 .gallery-grid img:hover {
@@ -1205,8 +1231,11 @@ textarea {
     flex-direction: column;
   }
 
-  .gallery-grid {
-    columns: 2 260px;
+  .gallery-grid img,
+  .gallery-grid img:nth-child(2n) {
+    flex-basis: min(84vw, 680px);
+    width: min(84vw, 680px);
+    height: clamp(340px, 58vw, 500px);
   }
 }
 
@@ -1328,14 +1357,10 @@ textarea {
   }
 
   .gallery-grid {
-    display: flex;
     gap: 14px;
     margin-right: -18px;
     margin-left: -18px;
     padding: 0 18px 12px;
-    overflow-x: auto;
-    columns: auto;
-    scroll-snap-type: x mandatory;
     scrollbar-width: none;
   }
 
@@ -1343,18 +1368,15 @@ textarea {
     display: none;
   }
 
-  .gallery-grid img {
+  .gallery-grid img,
+  .gallery-grid img:nth-child(2n) {
     flex: 0 0 min(82vw, 340px);
+    width: min(82vw, 340px);
     height: 360px;
     margin: 0;
     border-radius: 24px;
     object-fit: cover;
     scroll-snap-align: center;
-  }
-
-  .gallery-grid img:nth-child(4n + 1) {
-    flex-basis: min(82vw, 340px);
-    height: 360px;
   }
 
   .gallery-lightbox {
