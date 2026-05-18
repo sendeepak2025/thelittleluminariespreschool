@@ -482,7 +482,7 @@ h3 {
 .intro-strip article {
   position: relative;
   overflow: hidden;
-  padding: 26px;
+  padding: 28px;
   transition: transform 180ms ease, box-shadow 180ms ease;
 }
 
@@ -514,38 +514,9 @@ h3 {
   box-shadow: var(--shadow);
 }
 
-.intro-icon {
-  display: inline-flex;
-  width: 46px;
-  height: 46px;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 18px;
-  border-radius: 16px;
-  color: #fff;
-  background: var(--coral);
-  font-family: "Fraunces", Georgia, serif;
-  font-size: 1.1rem;
-  font-weight: 950;
-}
-
-.intro-strip article:nth-child(2) .intro-icon {
-  background: var(--aqua);
-}
-
-.intro-strip article:nth-child(3) .intro-icon {
-  background: var(--sage);
-}
-
-.intro-strip article:nth-child(4) .intro-icon {
-  background: var(--gold);
-  color: var(--ink);
-}
-
-.intro-strip span,
 .program-grid span {
   display: inline-flex;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   color: var(--coral);
   font-size: 0.8rem;
   font-weight: 950;
@@ -855,12 +826,90 @@ h3 {
     linear-gradient(135deg, rgba(255, 244, 199, 0.45), rgba(238, 249, 244, 0.55)),
     #fff;
   box-shadow: var(--shadow-soft);
+  cursor: zoom-in;
   transition: transform 180ms ease, box-shadow 180ms ease;
 }
 
 .gallery-grid img:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow);
+}
+
+.gallery-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(18px, 4vw, 42px);
+  background: rgba(7, 20, 18, 0.9);
+}
+
+.gallery-lightbox.is-open {
+  display: flex;
+}
+
+.gallery-lightbox figure {
+  display: grid;
+  gap: 14px;
+  width: min(980px, 100%);
+  margin: 0;
+}
+
+.gallery-lightbox img {
+  width: 100%;
+  max-height: 78vh;
+  border: 10px solid #fff;
+  border-radius: 26px;
+  object-fit: contain;
+  background: #fff;
+  box-shadow: 0 32px 90px rgba(0, 0, 0, 0.34);
+}
+
+.gallery-lightbox figcaption {
+  min-height: 24px;
+  color: #fff;
+  font-weight: 800;
+  text-align: center;
+}
+
+.gallery-close,
+.gallery-prev,
+.gallery-next {
+  position: absolute;
+  z-index: 2;
+  border: 0;
+  border-radius: 999px;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: var(--shadow-soft);
+  font: inherit;
+  font-weight: 950;
+  cursor: pointer;
+}
+
+.gallery-close {
+  top: 22px;
+  right: 22px;
+  width: 46px;
+  height: 46px;
+}
+
+.gallery-prev,
+.gallery-next {
+  top: 50%;
+  min-height: 46px;
+  padding: 10px 18px;
+  transform: translateY(-50%);
+}
+
+.gallery-prev {
+  left: 22px;
+}
+
+.gallery-next {
+  right: 22px;
 }
 
 .trust-grid {
@@ -892,32 +941,6 @@ h3 {
 .trust-grid article:hover {
   transform: translateY(-4px);
   box-shadow: var(--shadow);
-}
-
-.trust-icon {
-  display: inline-flex;
-  width: 48px;
-  height: 48px;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 22px;
-  border-radius: 16px;
-  color: #fff;
-  background: var(--coral);
-  font-weight: 950;
-}
-
-.trust-grid article:nth-child(2) .trust-icon {
-  background: var(--sage);
-}
-
-.trust-grid article:nth-child(3) .trust-icon {
-  color: var(--ink);
-  background: var(--gold);
-}
-
-.trust-grid article:nth-child(4) .trust-icon {
-  background: var(--aqua);
 }
 
 .trust-grid article:nth-child(1) {
@@ -1305,7 +1328,57 @@ textarea {
   }
 
   .gallery-grid {
-    columns: 1;
+    display: flex;
+    gap: 14px;
+    margin-right: -18px;
+    margin-left: -18px;
+    padding: 0 18px 12px;
+    overflow-x: auto;
+    columns: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .gallery-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .gallery-grid img {
+    flex: 0 0 min(82vw, 340px);
+    height: 360px;
+    margin: 0;
+    border-radius: 24px;
+    object-fit: cover;
+    scroll-snap-align: center;
+  }
+
+  .gallery-grid img:nth-child(4n + 1) {
+    flex-basis: min(82vw, 340px);
+    height: 360px;
+  }
+
+  .gallery-lightbox {
+    padding: 14px;
+  }
+
+  .gallery-lightbox img {
+    max-height: 72vh;
+    border-width: 6px;
+    border-radius: 20px;
+  }
+
+  .gallery-close {
+    top: 12px;
+    right: 12px;
+  }
+
+  .gallery-prev,
+  .gallery-next {
+    top: auto;
+    bottom: 16px;
+    min-height: 40px;
+    padding: 8px 14px;
+    transform: none;
   }
 
   .program-grid article,
