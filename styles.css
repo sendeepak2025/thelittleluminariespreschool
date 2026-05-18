@@ -423,23 +423,6 @@ h3 {
   pointer-events: none;
 }
 
-.hero-badge {
-  position: absolute;
-  z-index: 3;
-  right: var(--section-x);
-  top: clamp(72px, 9vw, 104px);
-  max-width: 180px;
-  padding: 11px 15px;
-  border: 1px solid rgba(255, 255, 255, 0.72);
-  border-radius: 999px;
-  color: var(--teal-dark);
-  background: rgba(255, 255, 255, 0.86);
-  box-shadow: var(--shadow-soft);
-  font-size: 0.82rem;
-  font-weight: 950;
-  text-align: center;
-}
-
 .enroll-banner {
   display: flex;
   align-items: center;
@@ -1274,7 +1257,6 @@ textarea {
 
   .hero::before,
   .hero::after,
-  .hero-badge,
   .hero-proof {
     display: none;
   }
